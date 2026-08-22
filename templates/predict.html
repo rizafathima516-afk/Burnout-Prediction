@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Predict Burnout</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:linear-gradient(to right,lightcyan);
+font-family:Arial;
+min-height:100vh;
+}
+
+.predict-section{
+padding:70px 0;
+}
+
+.predict-box{
+background:rgb(232,231,230);
+padding:45px;
+border-radius:25px;
+box-shadow:0 5px 25px rgba(0,0,0,0.2);
+}
+
+.title{
+text-align:center;
+font-size:50px;
+font-weight:bold;
+margin-bottom:40px;
+color:#0b131f;
+}
+
+.form-label{
+font-weight:bold;
+margin-bottom:8px;
+}
+
+.form-control{
+height:50px;
+border-radius:10px;
+}
+
+.btn-predict{
+width:100%;
+padding:15px;
+font-size:22px;
+border:none;
+border-radius:12px;
+background:#01193d;
+color:white;
+font-weight:bold;
+}
+
+.btn-predict:hover{
+background:#084298;
+}
+
+.result{
+margin-top:35px;
+padding:20px;
+border-radius:15px;
+background:#e8f0ff;
+font-size:28px;
+font-weight:bold;
+text-align:center;
+color:#084298;
+}
+
+.back-btn{
+text-decoration:none;
+font-size:20px;
+font-weight:bold;
+color:black;
+margin-left:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="pt-4">
+
+<a href="/" class="back-btn">
+← Back to Home
+</a>
+
+</div>
+
+<section class="predict-section">
+
+<div class="container">
+
+<div class="row justify-content-center">
+
+<div class="col-lg-8">
+
+<div class="predict-box">
+
+<h1 class="title">
+Burnout Prediction
+</h1>
+
+<form action="/predict" method="POST">
+
+<div class="row">
+
+<div class="col-md-6 mb-4">
+<label class="form-label">Work Hours</label>
+<input type="number" step="any" name="work_hours" class="form-control" required>
+</div>
+
+<div class="col-md-6 mb-4">
+<label class="form-label">Screen Time Hours</label>
+<input type="number" step="any" name="screen_time_hours" class="form-control" required>
+</div>
+
+<div class="col-md-6 mb-4">
+<label class="form-label">Meetings Count</label>
+<input type="number" name="meetings_count" class="form-control" required>
+</div>
+
+<div class="col-md-6 mb-4">
+<label class="form-label">Breaks Taken</label>
+<input type="number" name="breaks_taken" class="form-control" required>
+</div>
+
+<div class="col-md-6 mb-4">
+<label class="form-label">After Hours Work</label>
+<select name="after_hours_work" class="form-control">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</div>
+
+<div class="col-md-6 mb-4">
+<label class="form-label">Sleep Hours</label>
+<input type="number" step="any" name="sleep_hours" class="form-control" required>
+</div>
+
+<div class="col-md-12 mb-4">
+<label class="form-label">Task Completion Rate</label>
+<input type="number" step="any" name="task_completion_rate" class="form-control" required>
+</div>
+
+<div class="col-md-6 mb-4">
+<label class="form-label">Burnout Score</label>
+<input type="number" step="any" name="burnout_score" class="form-control" required>
+</div>
+
+<div class="col-md-6 mb-4">
+<label class="form-label">Day Type</label>
+<select name="day_type" class="form-control" required>
+<option value="Weekday">Weekday</option>
+<option value="Weekend">Weekend</option>
+</select>
+</div>
+
+</div>
+
+<button type="submit" class="btn-predict">
+Predict Burnout
+</button>
+
+</form>
+
+{% if prediction_text %}
+
+<div class="result">
+
+{{ prediction_text }}
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</body>
+
+</html>
